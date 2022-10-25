@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 import '../../models/product.dart';
@@ -16,20 +14,22 @@ class ProductGridTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(10),
-      child: GestureDetector(
-        onTap: () {
-          Navigator.of(context).pushNamed(
-            ProductDetailScreen.routeName,
-            arguments: product.id,
-          );
-        },
-        child: Image.network(
-          product.imageURL,
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
+        borderRadius: BorderRadius.circular(10),
+        child: GridTile(
+          footer: buildGridFooterBar(context),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context).pushNamed(
+                ProductDetailScreen.routeName,
+                arguments: product.id,
+              );
+            },
+            child: Image.network(
+              product.imageURL,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ));
   }
 
   Widget buildGridFooterBar(BuildContext context) {
@@ -37,7 +37,7 @@ class ProductGridTitle extends StatelessWidget {
       backgroundColor: Colors.black87,
       leading: ValueListenableBuilder<bool>(
         valueListenable: product.isFavoriteListenable,
-        builder: (ctx, isFavorite, child){
+        builder: (ctx, isFavorite, child) {
           return IconButton(
             icon: Icon(
               isFavorite ? Icons.favorite : Icons.favorite_border,
@@ -46,7 +46,6 @@ class ProductGridTitle extends StatelessWidget {
             onPressed: () {
               product.isFavorite = !isFavorite;
             },
-
           );
         },
       ),
