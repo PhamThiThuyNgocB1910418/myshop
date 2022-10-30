@@ -58,26 +58,25 @@ class CartScreen extends StatelessWidget {
               label: Text(
                 '\$${cart.totalAmount.toStringAsFixed(2)}',
                 style: TextStyle(
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context).primaryTextTheme.headline6?.color,
                 ),
               ),
               backgroundColor: Theme.of(context).primaryColor,
             ),
             TextButton(
-                onPressed: cart.totalAmount <= 0
-                    ? null
-                    : () {
-                        context.read<OrdersManager>().addOrder(
-                              cart.products,
-                              cart.totalAmount,
-                        );
-                        cart.clear();
-                      },
-                      style: TextButton.styleFrom(
-                        textStyle:
-                        TextStyle(color: Theme.of(context).primaryColor),
-                      ),
-                      child: const Text('ORDER NOW'),
+              onPressed: cart.totalAmount <= 0
+                  ? null
+                  : () {
+                      context.read<OrdersManager>().addOrder(
+                            cart.products,
+                            cart.totalAmount,
+                          );
+                      cart.clear();
+                    },
+              style: TextButton.styleFrom(
+                textStyle: TextStyle(color: Theme.of(context).primaryColor),
+              ),
+              child: const Text('ORDER NOW'),
             )
           ],
         ),
