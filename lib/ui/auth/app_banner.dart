@@ -31,7 +31,7 @@ class AppBanner extends StatelessWidget {
         'MyShop',
         style: TextStyle(
           color: Theme.of(context).textTheme.headline6?.color,
-          fontSize: 50,
+          fontSize: 40,
           fontFamily: 'Anton',
           fontWeight: FontWeight.normal,
         ),

@@ -8,6 +8,25 @@ class Product {
   final String imageURL;
   final ValueNotifier<bool> _isFavorite;
 
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'description': description,
+      'price': price,
+      'imageURL': imageURL,
+    };
+  }
+
+  static Product fromJson(Map<String, dynamic> json) {
+    return Product(
+      id: json['id'],
+      title: json['title'],
+      description: json['description'],
+      price: json['price'],
+      imageURL: json['imageURL'],
+    );
+  }
+
   Product({
     this.id,
     required this.title,
@@ -35,14 +54,14 @@ class Product {
     double? price,
     String? imageURL,
     bool? isFavorite,
-  }){
-      return Product(
-        id: id ?? this.id,
-        title: title ?? this.title,
-        description: description ?? this.description,
-        price: price ?? this.price,
-        imageURL: imageURL ?? this.imageURL,
-        isFavorite: isFavorite ?? this.isFavorite,
-      );
-    }
+  }) {
+    return Product(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      price: price ?? this.price,
+      imageURL: imageURL ?? this.imageURL,
+      isFavorite: isFavorite ?? this.isFavorite,
+    );
+  }
 }
